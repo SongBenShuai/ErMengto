@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-// import store from '../store'
 // import router from '../router'
 
 const service = axios.create({
@@ -11,8 +10,8 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     // 将token通过请求头发送给后台
-    // const token = store.getters.token
-    // if (token) config.headers.Authorization = token
+    const token = localStorage.getItem('token')
+    if (token) config.headers.token = token
 
     return config
   },
@@ -23,6 +22,9 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
+    if (response.data.code === 200) {
+      return response.data.data
+    }
     return response
   },
   (error) => {
