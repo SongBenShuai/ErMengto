@@ -1,7 +1,7 @@
 <template>
   <div class="info">
     <div class="info-right">
-      <el-avatar src="data.avatar"></el-avatar>
+      <el-avatar :src="data.avatar"></el-avatar>
       <el-dropdown trigger="click" style="cursor: pointer">
         <span class="el-dropdown-link">
           {{ data.username }}
